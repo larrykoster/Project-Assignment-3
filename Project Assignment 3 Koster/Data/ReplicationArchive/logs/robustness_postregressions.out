@@ -1,0 +1,40 @@
+	(1)	(2)	(3)	(4)
+	RECODE of yal441 (mention vote number)	RECODE of yal441 (mention vote number)	RECODE of yal442 (ask about vote?)	RECODE of yal442 (ask about vote?)
+Psychological Secrecy (PC)	-0.031	-0.034	-0.001	-0.001
+	[0.044]	[0.042]	[0.014]	[0.014]
+Social Secrecy (PC)	-0.814	-0.635	-0.017	-0.005
+	[0.045]***	[0.046]***	[0.014]	[0.016]
+Union HH (1=yes)		0.104		0.025
+		[0.089]		[0.028]
+Party ID (-3=Str. Rep.; 3=Str. Dem.)		0.034		-0.001
+		[0.024]		[0.008]
+Race: White (1=yes)		-0.028		0.027
+		[0.167]		[0.056]
+Race: Black (1=yes)		0.236		0.005
+		[0.229]		[0.072]
+Race: Hispanic (1=yes)		-0.272		-0.044
+		[0.235]		[0.080]
+o. Race: Other Race (1=yes)		0.000		0.000
+		[0.000]		[0.000]
+Female (1=yes)		0.247		0.043
+		[0.081]***		[0.027]
+Age (Years)		-0.007		-0.003
+		[0.003]***		[0.001]***
+Religious Attendance (1-6)		0.066		-0.005
+		[0.025]***		[0.009]
+Education (1=No HS; 6=Post-grad)		0.007		0.004
+		[0.028]		[0.009]
+Income (1=<10k; 14=>150k; 15=RF/Missing)		0.027		-0.001
+		[0.013]**		[0.005]
+Income Missing		-0.332		0.058
+		[0.165]**		[0.060]
+Ideology (-2=very cons.; 0=moderate/not sure; +2=very lib.)		-0.008		-0.002
+		[0.050]		[0.016]
+Interest in Politics (standardized)		0.426		0.031
+		[0.051]***		[0.017]*
+Constant	3.484	3.267	0.077	0.175
+	[0.041]***	[0.253]***	[0.013]***	[0.083]**
+Observations	802	802	469	469
+R-squared	0.294	0.387	0.003	0.038
+Standard errors in brackets				
+* significant at 10%; ** significant at 5%; *** significant at 1%				

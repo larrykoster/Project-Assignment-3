@@ -1,0 +1,92 @@
+	(1)	(2)	(3)	(4)
+	Presidential Vote Choice (-1=McCain; 0=Other/Didn't Vote; +1=Obama)	Presidential Vote Choice (-1=McCain; 0=Other/Didn't Vote; +1=Obama)	Presidential Vote Choice (-1=McCain; 0=Other/Didn't Vote; +1=Obama)	Presidential Vote Choice (-1=McCain; 0=Other/Didn't Vote; +1=Obama)
+Psychological Secrecy (PC)	0.039	0.038	0.055	-0.231
+	[0.032]	[0.082]	[0.084]	[0.238]
+Social Secrecy (PC)	-0.000	-0.014	-0.010	-0.161
+	[0.040]	[0.056]	[0.053]	[0.309]
+Party: Strong Republican	-0.682	-0.707	-0.618	-0.749
+	[0.091]***	[0.100]***	[0.282]**	[0.273]***
+Party: Weak Republican	-0.501	-0.545	-0.553	-0.603
+	[0.090]***	[0.102]***	[0.189]***	[0.181]***
+Party: Lean Republican	-0.396	-0.401	-0.367	-0.415
+	[0.114]***	[0.126]***	[0.146]**	[0.145]***
+Party: Lean Democrat	0.638	0.644	0.630	0.671
+	[0.095]***	[0.102]***	[0.134]***	[0.136]***
+Party: Weak Democrat	0.315	0.379	0.426	0.563
+	[0.093]***	[0.101]***	[0.195]**	[0.191]***
+Party: Strong Democrat	0.579	0.592	0.583	0.717
+	[0.083]***	[0.092]***	[0.273]**	[0.263]***
+Union HH (1=yes)	0.093	0.064	-0.242	-0.442
+	[0.049]*	[0.048]	[0.437]	[0.464]
+Race: Black (1=yes)	0.362	0.327	0.473	0.316
+	[0.076]***	[0.077]***	[0.162]***	[0.158]**
+Race: Hispanic (1=yes)	0.207	0.142	0.020	0.013
+	[0.092]**	[0.079]*	[0.092]	[0.092]
+Race: Other Race (1=yes)	0.027	0.021	0.030	-0.030
+	[0.107]	[0.104]	[0.111]	[0.110]
+Female (1=yes)	0.139	0.146	0.132	0.147
+	[0.045]***	[0.042]***	[0.048]***	[0.047]***
+Age (Years)	0.002	-0.001	-0.010	0.003
+	[0.008]	[0.008]	[0.009]	[0.011]
+Age-squared/100	0.002	0.005	0.013	-0.001
+	[0.008]	[0.008]	[0.009]	[0.011]
+Married/Domestic Partnership (1=yes)	-0.054	-0.054	-0.038	-0.013
+	[0.046]	[0.046]	[0.051]	[0.050]
+Religious Attendance (1-6)	-0.017	-0.018	-0.025	-0.030
+	[0.013]	[0.013]	[0.015]*	[0.015]**
+Education: No HS	0.250	0.200	0.132	0.106
+	[0.116]**	[0.108]*	[0.098]	[0.088]
+Education: Some college	-0.026	-0.037	-0.013	-0.012
+	[0.057]	[0.055]	[0.054]	[0.054]
+Education: 2-year college	0.095	0.139	0.156	0.142
+	[0.097]	[0.101]	[0.109]	[0.107]
+Education: 4-year college	0.077	0.082	0.157	0.175
+	[0.058]	[0.059]	[0.061]**	[0.060]***
+Education: Post-graduate	0.137	0.134	0.182	0.223
+	[0.077]*	[0.073]*	[0.072]**	[0.074]***
+Income (1=<10k; 14=>150k; 15=RF/Missing)	0.006	0.007	-0.002	-0.008
+	[0.007]	[0.007]	[0.008]	[0.008]
+Interest in Politics (standardized)	-0.029	-0.028	-0.015	-0.006
+	[0.031]	[0.029]	[0.031]	[0.031]
+Ideology (-2=very cons.; 0=moderate/not sure; +2=very lib.)	0.174	0.155	0.150	0.151
+	[0.028]***	[0.031]***	[0.032]***	[0.031]***
+Income Missing	-0.058	-0.090	-0.083	-0.004
+	[0.091]	[0.094]	[0.111]	[0.108]
+Psychological Secrecy x Union HH (1=yes)		-0.223	-0.160	-0.156
+		[0.064]***	[0.061]***	[0.064]**
+Social Secrecy x Union HH (1=yes)		0.017	-0.056	-0.072
+		[0.063]	[0.087]	[0.084]
+Psychological Secrecy x Party: Strong Republican		0.083	0.051	-0.032
+		[0.085]	[0.088]	[0.113]
+Psychological Secrecy x Party: Weak Republican		-0.123	-0.168	-0.264
+		[0.116]	[0.121]	[0.132]**
+Psychological Secrecy x Party: Lean Republican		0.135	0.085	0.079
+		[0.122]	[0.119]	[0.134]
+Psychological Secrecy x Party: Lean Democrat		0.111	0.061	0.125
+		[0.125]	[0.124]	[0.137]
+Psychological Secrecy x Party: Weak Democrat		0.143	0.091	0.009
+		[0.108]	[0.111]	[0.118]
+Psychological Secrecy x Party: Strong Democrat		0.044	-0.039	-0.048
+		[0.095]	[0.098]	[0.115]
+Social Secrecy x Party: Strong Republican		0.042	-0.005	-0.035
+		[0.111]	[0.099]	[0.118]
+Social Secrecy x Party: Weak Republican		0.214	0.182	0.120
+		[0.076]***	[0.083]**	[0.088]
+Social Secrecy x Party: Lean Republican		0.100	0.068	0.047
+		[0.174]	[0.191]	[0.214]
+Social Secrecy x Party: Lean Democrat		0.162	0.192	0.253
+		[0.113]	[0.115]*	[0.137]*
+Social Secrecy x Party: Weak Democrat		-0.181	-0.173	-0.229
+		[0.098]*	[0.092]*	[0.096]**
+Social Secrecy x Party: Strong Democrat		-0.067	-0.001	-0.000
+		[0.115]	[0.113]	[0.112]
+Constant	-0.352	-0.307	-0.130	-0.409
+	[0.245]	[0.250]	[0.291]	[0.314]
+Observations	804	804	804	804
+R-squared	0.697	0.717	0.740	0.762
+Social Secrecy x PID (Prob>F)		0.006	0.022	0.0022204
+Psychological Secrecy x PID (Prob>F)		0.276	0.284	0.1389667
+Union and PID interactions (Prob>F)			0.007	0.0104937
+Secrecy interactions (Prob>F)				0.0000049
+Robust standard errors in brackets				
+* significant at 10%; ** significant at 5%; *** significant at 1%				

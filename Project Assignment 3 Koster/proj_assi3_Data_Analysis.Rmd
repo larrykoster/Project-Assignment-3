@@ -1,0 +1,614 @@
+---
+title: "Data Analysis"
+author: "lkoster"
+date: "May 19, 2016"
+output: html_document
+---
+```{r}
+
+```
+
+
+```{r}
+#load libraries and packages
+library(car)
+library(texreg)
+library(dplyr)
+library(broom)
+library(foreign)
+library(broom)
+library(dplyr)
+library(coefplot)
+library(ggplot2)
+library(coefplot)
+library(stargazer)
+library(cran)
+library(lmtest)
+library(sandwich)
+
+#to access the data by converting it from .dta to .csv 
+
+yaledata1.df <- read.dta("Data//ReplicationArchive//sourcedata//YaleCCES2008_SecretBallotItems.dta")
+voter.df = read.dta("//Data//ReplicationArchive//sourcedata//YALECCAP2008_SecretBallotItems.dta")
+
+
+
+# VARIABLES OF INTEREST IN YALE DF: 
+#     yal363 ---- "difficulty to find out"
+#     cc410  ---- candidate choice (1=-1/Obama) (2=1/McCain) "Pres Vote choice" 
+#     v243  ---   "Ideology (5=very cons.4 = cons. 3=moderate/not sure; 2 = lib, 1=very lib.)"
+#     v211,   --- Race (white=race1 gen black=race2 gen hispanic=race3 gen otherrace=race4+race5+race6+race7+race8
+#     v213 ---- education 
+#     v246 ---- family_income 
+#     v207 ---- birth_year
+#     cc329 ---- union household  "Union HH (1=yes)" (1=0) (2 3 4=1) (*=.), 
+#     v208  ---- gender  
+#     cc403 ---- reported turnout in 2008 (1=yes)
+#     v203 ----- voter registration status  (1=1) (2 3=0) (*=.),  (0=no/don't know, 1=yes)"
+#     v208-1  -   label var gender "Female (1=yes)" 
+#     v246 ------  gen Family income
+
+
+
+yaledata1.df <- read.dta("data//ReplicationArchive//sourcedata//YaleCCES2008_SecretBallotItems.dta")
+
+vote <- yaledata1.df %>%
+  select(yal363, cc410, v243, v211, v213, v246, v207, cc329, v208, cc403, v203) %>%
+  # Give variables meaningful names
+  rename(vote_choice = cc410,
+         ballot_secrecy = yal363,
+         ideology = v243,
+         race = v211,
+         education = v213,
+         family_income = v246,
+         birth_year = v207,
+         unionHH = cc329, # union household  "Union HH (1=yes)" (1=0) (2 3 4=1) (*=.), 
+         gender = v208,  #  gender   
+         registration_status = v203 # voter registration status  (1=1) (2 3=0) (*=.),  (0=no/don't know, 1=yes)"
+          ) %>%
+
+  # drop third party or missing vote choice
+  filter(vote_choice %in% c("john mccain (republican)", "barack obama (democrat)")) %>%
+  # New variables
+  # - ideology_strength: strength of ideology. 
+  # - obama: did they vote for obama
+  # - liberal: 1 if voted for obama
+  # - ballot_secrecy_binary: 1 if think ballot is secret. (ya1363 < 4)
+  mutate(obama = vote_choice %in% "barack obama (democrat)",
+         ideology = as.numeric(ideology),
+         ideology_strength = abs(ideology - 3),
+         liberal = as.integer(ideology <= 3),
+         age = 2009 - birth_year,
+         age_squared = (age^2)/100,
+         ballot_secrecy_binary = as.integer(ballot_secrecy) < 4,
+         strategic_voter =  
+           ifelse(vote_choice == "barack obama (democrat)", 
+                  ifelse(ideology > 3, 1, 0), 
+                  ifelse(vote_choice == "john mccain (republican)",
+                         ifelse(ideology < 3, 1, 0), 
+                         0)))
+
+
+# Regress (Voted obama) on the interaction of ideology strength, liberal and belief in ballot secrecy
+model1 <- lm(strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary, data = vote)
+         
+# Add other regressions ... 
+model2 <- lm(strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary +
+     age_squared, data = vote)
+
+model3 <- lm(strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary + age 
+             + race + age_squared + education + family_income, data = vote) 
+
+model4 <- lm(strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary + age + race + 
+     age_squared, data = vote)
+
+model5 <- lm(strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary, data = vote)
+model6 <- lm(strategic_voter ~ liberal + ideology_strength + ballot_secrecy_binary, data = vote)
+model7 <- lm(strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary + race, data = vote)
+model8 <- lm(strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary + unionHH, data = vote)
+model9 <- lm(strategic_voter ~ liberal + ideology_strength + ballot_secrecy_binary + unionHH, data = vote)
+model10 <- lm(strategic_voter ~ ballot_secrecy_binary + ideology_strength + race + 
+                education + family_income + unionHH + gender + 
+                registration_status + liberal + age + age_squared, data = vote)
+
+model12 <- lm(strategic_voter ~ ballot_secrecy_binary * liberal * ideology_strength + race + 
+                education +  family_income + unionHH + gender + registration_status  + 
+                age + age_squared, data = vote)
+
+model13 <- lm(strategic_voter ~ ballot_secrecy_binary * ideology * ideology_strength + race + 
+                education +  family_income + unionHH + gender + registration_status  + 
+                age + age_squared, data = vote)
+
+
+model_race <-  lm(strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary * race, data = vote)
+
+model_race_union <-  lm(strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary * unionHH * race, data = vote)
+
+model_race_union2 <- lm(strategic_voter ~ ideology_strength * ballot_secrecy_binary * unionHH * race, data = vote)
+
+
+#Determining the effect sizes of RACE BLACK and RACE WHITE
+
+obs1 <- data.frame(race = "black",
+                   ideology_strength = mean(vote$ideology_strength, na.rm = TRUE),
+                   ballot_secrecy_binary = TRUE,
+                   education =  "some college",
+                   family_income = "$50,000 - $59,999",
+                   unionHH = "i and no one in household union member",
+                   gender = "male", 
+                   registration_status = "yes",
+                   liberal = mean(vote$liberal, na.rm = TRUE),
+                   age = mean(vote$age, na.rm = TRUE),
+                   age_squared  = mean(vote$age_squared, na.rm = TRUE))
+
+obs2 <- mutate(obs1, race = "white")
+
+newdata <- bind_rows(obs1, obs2)
+
+pred1 <- predict(model12, newdata)
+
+pred_CI <- predict(model12, newdata, interval = "confidence", level = .95)
+
+mw_pred_tidy <- tidy(pred_CI)
+mw_pred_tidy <- mutate(mw_pred_tidy, scenario = c("black", "white"))
+ggplot(mw_pred_tidy, aes(x = scenario, y = fit, ymin = lwr, ymax = upr)) +
+  geom_pointrange() +
+  coord_flip() +
+  ggtitle("Effect of Race on Likelihood of Strategic Voting") +
+  labs(y="Predicted Effect on Strategic Voting",x="Race") 
+
+#Determining the effect sizes of Ballot Secrecy Binary TRUE and FALSE 
+
+obs3 <- data.frame(race = "white",
+                   ideology_strength = mean(vote$ideology_strength, na.rm = TRUE),
+                   ballot_secrecy_binary = TRUE,
+                   education =  "some college",
+                   family_income = "$50,000 - $59,999",
+                   unionHH = "i and no one in household union member",
+                   gender = "male", 
+                   registration_status = "yes",
+                   liberal = mean(vote$liberal, na.rm = TRUE),
+                   age = mean(vote$age, na.rm = TRUE),
+                   age_squared  = mean(vote$age_squared, na.rm = TRUE))
+
+obs4 <- mutate(obs3, ballot_secrecy_binary = FALSE)
+
+newdata <- bind_rows(obs3, obs4)
+
+pred1 <- predict(model12, newdata)
+
+pred_CI <- predict(model12, newdata, interval = "confidence", level = .95)
+
+mw_pred_tidy <- tidy(pred_CI)
+mw_pred_tidy <- mutate(mw_pred_tidy, scenario = c("Believe in Secrecy", "Doubt Secrecy"))
+ggplot(mw_pred_tidy, aes(x = scenario, y = fit, ymin = lwr, ymax = upr)) +
+  geom_pointrange() +
+  coord_flip() +
+  ggtitle("Effect of Belief in Ballot Secrecy on Likelihood of Strategic Voting") +
+  labs(y="Predicted Effect on Strategic Voting",x="Belief in Ballot Secrecy") 
+
+#Determining the effect sizes of Ideological Strength  
+
+obs5 <- data.frame(race = "white",
+                   ideology_strength = 1,
+                   ballot_secrecy_binary = TRUE,
+                   education =  "some college",
+                   family_income = "$50,000 - $59,999",
+                   unionHH = "i and no one in household union member",
+                   gender = "male", 
+                   registration_status = "yes",
+                   liberal = mean(vote$liberal, na.rm = TRUE),
+                   age = mean(vote$age, na.rm = TRUE),
+                   age_squared  = mean(vote$age_squared, na.rm = TRUE))
+
+obs6 <- mutate(obs5, ideology_strength = 2)
+
+newdata <- bind_rows(obs5, obs6)
+
+pred1 <- predict(model12, newdata)
+
+pred_CI <- predict(model12, newdata, interval = "confidence", level = .95)
+
+mw_pred_tidy <- tidy(pred_CI)
+mw_pred_tidy <- mutate(mw_pred_tidy, scenario = c("Strong ideology", "Moderate Ideology"))
+ggplot(mw_pred_tidy, aes(x = scenario, y = fit, ymin = lwr, ymax = upr)) +
+  geom_pointrange() +
+  coord_flip() +
+  ggtitle("Effect of Ideological Strength on Likelihood of Strategic Voting") +
+  labs(y="Predicted Effect on Strategic Voting",x="Strength of Ideology") 
+
+
+#Determining the effect sizes of Ideology   
+
+ide_obs1 <- data.frame(race = "white",
+                   ideology_strength = 1,
+                   ballot_secrecy_binary = TRUE,
+                   education =  "some college",
+                   family_income = "$50,000 - $59,999",
+                   unionHH = "i and no one in household union member",
+                   gender = "male", 
+                   registration_status = "yes",
+                   ideology = 1,
+                   age = mean(vote$age, na.rm = TRUE),
+                   age_squared  = mean(vote$age_squared, na.rm = TRUE))
+
+ide_obs2 <- mutate(ide_obs1, ideology = 2)
+ide_obs3 <- mutate(ide_obs1, ideology = 3)
+ide_obs4 <- mutate(ide_obs1, ideology = 4)
+ide_obs5 <- mutate(ide_obs1, ideology = 5)
+
+newdata <- bind_rows(ide_obs1, ide_obs2, ide_obs3, ide_obs4, ide_obs5)
+
+pred1 <- predict(model13, newdata)
+
+pred_CI <- predict(model13, newdata, interval = "confidence", level = .95)
+
+mw_pred_tidy <- tidy(pred_CI)
+mw_pred_tidy <- mutate(mw_pred_tidy, scenario = c("1", "2", "3", "4", "5"))
+ggplot(mw_pred_tidy, aes(x = scenario, y = fit, ymin = lwr, ymax = upr)) +
+  geom_pointrange() +
+  coord_flip() +
+  ggtitle("Effect of Ideolology  on Likelihood of Strategic Voting") +
+  labs(y="Predicted Effect on Strategic Voting",x="Ideology: 1 = Very Liberal, 3 = Moderate, 5 = Very Conservative") 
+
+
+
+## This generates the code to generate the html regression table in Markdown
+stargazer(model10, model12, model13, model1, type = "html", 
+          title            = "Regression models",
+          dep.var.labels   = "Predicted Effect on Voting Strategically ",
+          star.char = c("&#9786;", "&#9786;&#9786;", "&#9786; &#9786; &#9786;"))
+
+
+```
+
+
+
+
+
+Here are the various data analyses for Project Assignment 3
+
+
+MEASUREMENT ERROR
+I am not concerned about measurement error in the variables, since the measurements come from a survey and were ostensibly conducted methodically and consistently. The respondents are given questions with clear categorical answers, thus there is little to no room for measurement error.
+
+
+
+Basic Bivariate regression and plot 
+
+Regressing strategic voter based on  belief in ballot secrecy
+My variable of interest is Strategic Voting, which means when a voter votes against their stated political or ideological leanings. I run a bivariate regression, using the main interacting variables, which is CONFIDENCE IN SECRECY (Ballot_secrecy) and IDEOLOGICAL STRENGTH.
+
+```{r}
+
+Bivar_mod <- lm(strategic_voter ~ ballot_secrecy_binary, data = vote)
+
+ggplot(vote, aes(fill = factor(ballot_secrecy_binary), x = strategic_voter)) +
+  geom_density(alpha = 0.3) 
+
+tidy_Bivar_mod <- tidy(Bivar_mod)
+knitr::kable(tidy_Bivar_mod, digits = 2, caption = "Bivariate Regression")  
+
+  
+    
+```{r}
+
+```
+#INTERACTING VARIABLES
+#Because the theory requires interactions, primarily because it supposes that an individual’s perceptions of ballot secrecy are relevant and activated when they are also in certain situations -- please see.
+
+```{r}
+Interact_mod <- lm(strategic_voter ~ ideology_strength *  ballot_secrecy_binary, data = vote)
+
+  
+#now I'm using the coefficients from the regression to plot simulated values of the model
+newdata <- data.frame(ideology_strength = seq(0,3,length.out = 100),
+                      ballot_secrecy_binary = c(rep(TRUE, 100), 
+                                                rep(FALSE, 100)))
+#now I'm creating predicted values based on the model
+pred_scenarios <- predict(Interact_mod, newdata = newdata, interval = "confidence")
+
+head(pred_scenarios)
+          
+#now creating a new dataset with both predicted/simulated x and y values, which I'll then use to plot
+full_pred <- cbind(newdata, pred_scenarios)
+
+
+
+```
+
+
+#plotting the predicted values of the regression
+
+```{r}
+ggplot(full_pred, aes(x = ideology_strength, y = fit, ymin = lwr, ymax = upr,
+                      fill = ballot_secrecy_binary)) +
+                    geom_line() +
+                    geom_ribbon(alpha = .3)
+
+```
+
+                    
+#this graph suggests that there is a slightly more significant effect of ideology stength on DV in the True ballot secrecy group (what does that mean?) than the False one, though the false one isn't stastically significant and the True one is. nonetheless,both groups seem to have very similar trends, meaning there isn't a very notable difference between the two groups.
+# potentially include the graph, but most importantly include and interpret the regression tables
+
+#NOTE: for the final project, I will add controls of more sophisticated model to mean values to data frame 
+
+
+#now plotting residuals against Ideology Strength to test for Heteroskedasticity in both of my interacting  models - 
+```{r}
+ggplot(Interact_augm, aes(x = .fitted, y = .std.resid)) +
+  geom_point() 
+
+ggplot(model13_augm, aes(x = .fitted, y = .resid)) +
+  geom_point() 
+
+```
+
+
+#there's cearly a pattern that might suggest heteroskedasticity, but since the  the .fitted is for a dummy DV, we;re going to run the BP test to make clearer sense.... 
+#and now running the Breusch-Pagan test
+
+bptest(model13)
+
+#this test explains that the Null Hypothesis (that it's homoskedastic) is being rejected, 
+#which once again suggests that the residuals are unevenly distributed, and thus
+#that the data are heteroskedastic
+
+#running of the Breush_pagan test, of course, confirms this finding - uneven distribution of residuals, probably linked to lack of distribution of "1"s at the ideology strength of "0"
+
+#OVB - then when we run model 13, we control for all kinds of things which now flip the explanatory valie/explaaanation  
+
+# Using the Nunn and Wantchekon method, this will allow me to test the possible effect of OVB (the number shold be large if it's robust to OVB, but it depends on the units of the DV) - I'll be comparing Model13 and Model1.
+
+OVB_bias_a <- (( coef(model13) ["ballot_secrecy_binaryTRUE:ideology_strength"] ) / (coef(model1) ["ballot_secrecy_binaryTRUE:ideology_strength"] -  coef(model13) ["ballot_secrecy_binaryTRUE:ideology_strength"]))
+OVB_bias_a
+
+OVB_bias_b <- ((coef(model13) ["ideology_strength"] ) / (coef(model1) ["ideology_strength"] - coef(model13) ["ideology_strength"]))
+OVB_bias_b
+
+#ovb_test <- function(mod_c, mod_nc, varname) {
+  #coef(mod_c)[varname] / (coef(mod_nc) [varname] - coef(mod_c) [varname])
+#}
+
+
+
+#INTERPRETING THE SUBSTANTIVE EFFECTS
+#look at the plot of the two lines (IS v. BS on DV) on the more rObust model to explain substantive and marginal effects (don't do it any other way)
+
+
+#VARIANCE-COVARIANCE
+#using the variance-covariance with Model13, we get coefficients with robust standard errors, then compare to test for robust standard errors
+
+vcov13 <- vcovHC(model13, type = "HC") 
+model13_robust <- tidy(coeftest(model13, vcov13))
+print(model13_robust)
+
+#the results from this show the SE moving from .07 which is unreliable to .11 which is now reliable, but it also means the effect is not statistically significant
+
+
+#testing the estimated coefficients
+coeftest((model13))
+
+
+#Conducting bootstrapped standard errors, finding confidence intervals using bse. I repeatedly draw samples from my original sample (with replacement) and use the quantiles of the bootstrap...
+
+db_boot <- bootstrap(vote, 1)
+
+mod_bs <- model13
+beta_bs <- 
+  bootstrap(vote, 1024) %>%
+    do(tidy(lm(strategic_voter ~ ballot_secrecy_binary * ideology * ideology_strength + race + 
+                education +  family_income + unionHH + gender + registration_status  + 
+                age + age_squared , data = .)))
+
+as.data.frame(beta_bs)
+summary(beta_bs)
+
+
+# Using Bootstrap data, OLS estimates
+filter(beta_bs, term == "raceblack") %>%
+  ungroup() %>%
+  summarize(conf.low = quantile(estimate, 0.025),
+            conf.high = quantile(estimate, 0.975))
+
+
+Observation and Cooks Distance
+
+ggplot(vote, aes(x = ballot_secrecy_binary, y = strategic_voter)) + 
+  geom_boxplot() +
+  xlab("ballot secrecy") +
+  ylab("strategic voter")
+
+mod_bs_aug <- augment(model13)
+glimpse(mod_bs_aug)
+
+mod_bs_aug <-
+  mod_bs_aug %>% 
+  mutate(.ballot_secrecy_binary.resid = .resid / .sigma * sqrt(1 - .hat))
+
+#setNames(rballot_secrecy_binary(mod13), vote)
+#setNames(rstrategic_voter(mode13), vote)
+
+ggplot(data = mod_bs_aug, aes(x = ballot_secrecy_binary, y = strategic_voter)) +
+  geom_point(mapping = aes(size = .hat)) +
+  geom_smooth(method = "lm") +
+  xlab("ballot secrecy") +
+  ylab("strategic voter")
+
+ggplot(data = mod_bs_aug, aes(x = ballot_secrecy_binary, y = strategic_voter)) +
+  geom_point(mapping = aes(size = abs(.ballot_secrecy_binary.resid))) +
+  geom_smooth(method = "lm")
+
+ggplot(data = mod_bs_aug, aes(x = ballot_secrecy_binary, y = strategic_voter)) +
+  geom_point(mapping = aes(size = .cooksd)) +
+  geom_smooth(method = "lm")
+
+cook_plot <- ggplot() +
+  geom_point(data = mod_bs_aug,
+             mapping = aes(x = .hat, y = .ballot_secrecy_binary.resid, size = .cooksd)) +
+# add labels to points, but only those points that are flagged as outliers
+# for at least one of the diagnostics considered here
+  geom_text(data =
+              filter(mod_bs_aug,
+                     .cooksd > 4 / model13$df.residual
+                     | abs(.ballot_secrecy_binary.resid) > 2
+                     | .hat > mean(.hat) + 2 * sd(.hat)),
+            mapping = aes(x = .hat, y = .ballot_secrecy_binary.resid, label = ballot_secrecy_binary),
+            hjust = 0, size = 4, colour = "red") +
+  geom_hline(data = data.frame(yintercept = c(-2, 0, 2)),
+             mapping = aes(yintercept = yintercept),
+             colour = "blue", alpha = 0.4) +
+  geom_vline(data = data.frame(xintercept = mean(mod_bs_aug$.hat) +
+                                 sd(mod_bs_aug$.hat) * c(2, 3)),
+             mapping = aes(xintercept = xintercept),
+             colour = "blue", alpha = 0.4) +
+             xlab("hat") +
+             ylab("Studentized residuals") + 
+             scale_size_continuous("Cook's Distance")  
+
+
+
+
+#Evaluate the possible degree of omitted variable bias using the proportional selection of #observables and unobservables assumption  (e.g. the test used in Nunn and Wantchekon)
+
+model1 <- lm(strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary, data = vote)
+model12 <- lm(strategic_voter ~ ballot_secrecy_binary * liberal * ideology_strength + race + 
+                education +  family_income + unionHH + gender + registration_status  + 
+                age + age_squared, data = vote)
+
+
+
+
+#THE CODE BELOW SEEMS TO NOT WORK FOR CROSS VALIDATION -  STILL TRYING TO WORK IT OUT!!!
+#SO THIS IS KIND OF THE END OF MY USEFUL CODE ON THIS ASSIGNMENT
+
+### Adding Fold CoVariation tests from Jeff Arnold's code
+library("car")
+library("ggplot2")
+set.seed(123125)
+data("vote")
+
+# Select folds for each observation
+#' Number of observations
+n <- nrow(vote)
+# Number of folds
+n_folds <- 5
+#' Folds for each observation
+#' Using the remainder of dividing by number of folds gives equal numbers
+#' Using sample shuffles the observations.
+fold <- sample((seq_len(n) %% n_folds) + 1)
+
+#' Formula for the model
+form <- strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary
+
+# Vector to hold MSE of the folds
+mse_folds <- rep(NA, n_folds)
+
+# Loop through each fold
+for (i in seq_len(n_folds)) {
+  # Test obervations
+  test_data <- vote[which(fold == i), ]
+  # Training observations
+  training_data <- vote[which(fold != i), ]
+  # estimate model on training data
+  mod <- lm(form, data = training_data)
+  # Get residuals for predictions
+  err <- predict(mod, newdata = test_data) - test_data[["vote"]]
+  mse_folds[i] <- mean(err ^ 2)
+}
+cv_mse <- mean(mse_folds)
+
+#' But the point of using Cross-Validation is to compare several models
+#' 
+#' We could copy-and paste the code above, and change the formula each time.
+#' Instead, we will use a for-loop to run the model for a set of models
+#' 
+
+             
+#' Store models in a list
+formulae <- list(strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary * 
+                   unionHH * race,
+                 strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary * race,
+                 strategic_voter ~ ballot_secrecy_binary * ideology * ideology_strength + race + 
+                   education +  family_income + unionHH + gender + registration_status  + 
+                   age + age_squared,
+                 strategic_voter ~ ballot_secrecy_binary * liberal * ideology_strength + race + 
+                   education +  family_income + unionHH + gender + registration_status  + 
+                   age + age_squared,
+                 strategic_voter ~ ballot_secrecy_binary + ideology_strength + race + 
+                   education + family_income + unionHH + gender + 
+                   registration_status + liberal + age + age_squared,
+                 strategic_voter ~ liberal + ideology_strength + ballot_secrecy_binary + unionHH,
+                 strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary + unionHH,
+                 strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary, 
+                 strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary +
+                   age_squared, 
+                 strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary + age 
+                 + race + age_squared + education + family_income, 
+                 strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary + 
+                   age + race + age_squared, 
+                 strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary, 
+                 strategic_voter ~ liberal + ideology_strength + ballot_secrecy_binary, 
+                 strategic_voter ~ liberal * ideology_strength * ballot_secrecy_binary + race,
+                 strategic_voter ~ ideology_strength * ballot_secrecy_binary * unionHH * race)
+
+#' Run the model for each formula
+models <- list()
+for (i in seq_along(formulae)) {
+  models[[i]] <- lm(formulae[[i]], data = vote)
+}
+# Example: model 1
+models[[1]]
+
+#' Dataset
+dataset <- vote
+#' Use 10-fold cross-validation
+n_folds <- 10
+
+#' Loop over each model, and calculate cross-validated MSE
+model_cv <- list()
+for (i in seq_along(models)) {
+  #' Extract the formula from the model
+  form <- as.formula(models[[i]])
+  cat("Running model: ", format(form), "\n")
+  #' number of obs
+  n <- nrow(dataset)
+  #' folds
+  fold <- sample((seq_len(n) %% n_folds) + 1)
+  #' dependent variable in the model
+  yvar <- as.character(form[[2]])
+  # Vector to hold MSE of the folds
+  mse_folds <- rep(NA, n_folds)
+  # Loop through each fold
+  for (k in seq_len(n_folds)) {
+    # Test obervations
+    data_test <- dataset[which(fold == k), , drop = FALSE]
+    # Training observations
+    data_train <- dataset[which(fold != k), , drop = FALSE]
+    # estimate model on training data
+    mod_train <- lm(form, data = data_train)
+    # Predicted values for new data
+    yhat <- predict(mod_train, newdata = data_test)
+    # Prediction erorrs
+    err <- yhat - data_test[[yvar]]
+    # Mean squared error
+    mse_folds[k] <- mean(err ^ 2)
+  }
+  # Cross-validated MSE for that model
+  cv_mse <- mean(mse_folds)
+  
+  # In-sample MSE
+  mse_train <- mean(residuals(models[[i]]) ^ 2)
+  
+  # Save results in a data frame
+  model_cv[[i]] <- data_frame(model = i,
+                              formula = format(form),
+                              mse_cv = cv_mse,
+                              mse_train = mse_train)
+}
+model_cv <- bind_rows(model_cv)
+
+model_cv
+
+

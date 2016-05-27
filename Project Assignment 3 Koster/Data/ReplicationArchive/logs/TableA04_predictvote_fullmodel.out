@@ -1,0 +1,198 @@
+	(1)	(2)
+	Presidential Vote Choice (-1=McCain; 0=Other/Didn't Vote; +1=Obama)	Presidential Vote Choice (-1=McCain; 0=Other/Didn't Vote; +1=Obama)
+Psychological Secrecy (PC)	0.019	-0.191
+	[0.066]	[0.177]
+Social Secrecy (PC)	-0.013	-0.215
+	[0.040]	[0.243]
+Social Secrecy x Union HH (1=yes)	-0.039	-0.068
+	[0.067]	[0.062]
+Psychological Secrecy x Union HH (1=yes)	-0.106	-0.109
+	[0.048]**	[0.051]**
+Psychological Secrecy x Party: Strong Republican	0.043	-0.017
+	[0.070]	[0.093]
+Psychological Secrecy x Party: Weak Republican	-0.116	-0.192
+	[0.092]	[0.104]*
+Psychological Secrecy x Party: Lean Republican	0.100	0.081
+	[0.093]	[0.110]
+Psychological Secrecy x Party: Lean Democrat	0.075	0.089
+	[0.091]	[0.104]
+Psychological Secrecy x Party: Weak Democrat	0.090	0.028
+	[0.088]	[0.092]
+Psychological Secrecy x Party: Strong Democrat	-0.027	-0.048
+	[0.077]	[0.088]
+Social Secrecy x Party: Strong Republican	-0.079	-0.095
+	[0.070]	[0.091]
+Social Secrecy x Party: Weak Republican	0.122	0.050
+	[0.062]*	[0.067]
+Social Secrecy x Party: Lean Republican	0.040	0.010
+	[0.137]	[0.156]
+Social Secrecy x Party: Lean Democrat	0.181	0.257
+	[0.082]**	[0.099]***
+Social Secrecy x Party: Weak Democrat	-0.112	-0.138
+	[0.069]	[0.076]*
+Social Secrecy x Party: Strong Democrat	-0.008	0.022
+	[0.092]	[0.086]
+Race: Black (1=yes) x Union	-0.009	0.116
+	[0.155]	[0.150]
+Race: Hispanic (1=yes) x Union	0.251	0.280
+	[0.185]	[0.148]*
+Race: Other Race (1=yes) x Union	0.130	0.198
+	[0.246]	[0.242]
+Female (1=yes) x Union	0.036	0.024
+	[0.101]	[0.097]
+Age (Years) x Union	0.014	0.020
+	[0.020]	[0.020]
+Age-squared/100 x Union	-0.009	-0.011
+	[0.020]	[0.021]
+Married/Domestic Partnership (1=yes) x Union	-0.043	-0.088
+	[0.119]	[0.121]
+Religious Attendance (1-6) x Union	0.008	0.000
+	[0.031]	[0.032]
+Education (1=No HS; 6=Post-grad) x Union	-0.070	-0.060
+	[0.036]*	[0.036]*
+Interest in Politics (standardized) x Union	-0.095	-0.137
+	[0.074]	[0.075]*
+Income (1=<10k; 14=>150k; 15=RF/Missing) x Union	0.010	0.011
+	[0.019]	[0.019]
+Income Missing x Union	-0.018	-0.016
+	[0.233]	[0.236]
+Index of issue attitudes (conservative-liberal) x Union	0.066	0.033
+	[0.081]	[0.084]
+Ideology (-2=very cons.; 0=moderate/not sure; +2=very lib.) x Union	0.015	0.040
+	[0.058]	[0.060]
+Race: Black (1=yes) x PID	-0.038	0.008
+	[0.061]	[0.057]
+Race: Hispanic (1=yes) x PID	0.045	-0.002
+	[0.032]	[0.030]
+Race: Other Race (1=yes) x PID	-0.091	-0.103
+	[0.044]**	[0.043]**
+Female (1=yes) x PID	0.030	0.029
+	[0.016]*	[0.016]*
+Age (Years) x PID	-0.005	-0.006
+	[0.004]	[0.003]*
+Age-squared/100 x PID	0.005	0.006
+	[0.003]	[0.003]
+Married/Domestic Partnership (1=yes) x PID	-0.006	-0.008
+	[0.016]	[0.016]
+Religious Attendance (1-6) x PID	-0.003	-0.006
+	[0.006]	[0.005]
+Education (1=No HS; 6=Post-grad) x PID	0.016	0.014
+	[0.006]***	[0.005]**
+Interest in Politics (standardized) x PID	0.011	0.012
+	[0.014]	[0.014]
+Income (1=<10k; 14=>150k; 15=RF/Missing) x PID	0.003	0.001
+	[0.003]	[0.003]
+Income Missing x PID	-0.073	-0.037
+	[0.038]*	[0.037]
+Party: Strong Republican	-0.732	-0.925
+	[0.292]**	[0.276]***
+Party: Weak Republican	-0.545	-0.641
+	[0.195]***	[0.182]***
+Party: Lean Republican	-0.374	-0.442
+	[0.148]**	[0.145]***
+Party: Lean Democrat	0.609	0.660
+	[0.131]***	[0.132]***
+Party: Weak Democrat	0.409	0.586
+	[0.200]**	[0.190]***
+Party: Strong Democrat	0.641	0.851
+	[0.286]**	[0.266]***
+Union HH (1=yes)	-0.272	-0.544
+	[0.433]	[0.450]
+Race: Black (1=yes)	0.408	0.259
+	[0.159]**	[0.160]
+Race: Hispanic (1=yes)	0.008	0.013
+	[0.093]	[0.093]
+Race: Other Race (1=yes)	0.031	-0.043
+	[0.097]	[0.100]
+Female (1=yes)	0.099	0.126
+	[0.048]**	[0.048]***
+Age (Years)	-0.010	-0.002
+	[0.009]	[0.011]
+Age-squared/100	0.012	0.003
+	[0.009]	[0.011]
+Married/Domestic Partnership (1=yes)	-0.045	-0.009
+	[0.051]	[0.052]
+Religious Attendance (1-6)	-0.016	-0.024
+	[0.015]	[0.015]
+Education: No HS	0.131	0.121
+	[0.103]	[0.090]
+Education: Some college	-0.018	-0.004
+	[0.054]	[0.054]
+Education: 2-year college	0.136	0.110
+	[0.106]	[0.103]
+Education: 4-year college	0.134	0.148
+	[0.059]**	[0.058]**
+Education: Post-graduate	0.176	0.203
+	[0.070]**	[0.073]***
+Income (1=<10k; 14=>150k; 15=RF/Missing)	-0.002	-0.006
+	[0.008]	[0.008]
+Income Missing	-0.078	-0.005
+	[0.106]	[0.104]
+Interest in Politics (standardized)	-0.023	-0.011
+	[0.032]	[0.031]
+Ideology (-2=very cons.; 0=moderate/not sure; +2=very lib.)	0.092	0.079
+	[0.031]***	[0.031]**
+Index of issue attitudes (conservative-liberal)	0.261	0.283
+	[0.058]***	[0.054]***
+Social Secrecy x Race: Black (1=yes)		0.169
+		[0.105]
+Social Secrecy x Race: Hispanic (1=yes)		0.219
+		[0.072]***
+Social Secrecy x Race: Other Race (1=yes)		-0.196
+		[0.101]*
+Social Secrecy x Female (1=yes)		0.067
+		[0.042]
+Social Secrecy x Age (Years)		0.003
+		[0.011]
+Social Secrecy x Age-squared/100		0.001
+		[0.012]
+Social Secrecy x Married/Domestic Partnership (1=yes)		-0.044
+		[0.041]
+Social Secrecy x Religious Attendance (1-6)		-0.026
+		[0.014]*
+Social Secrecy x Education (1=No HS; 6=Post-grad)		0.019
+		[0.017]
+Social Secrecy x Interest in Politics (standardized)		-0.044
+		[0.025]*
+Social Secrecy x Income (1=<10k; 14=>150k; 15=RF/Missing)		0.006
+		[0.007]
+Social Secrecy x Income Missing		-0.076
+		[0.101]
+Social Secrecy x Index of issue attitudes (conservative-liberal)		-0.114
+		[0.045]**
+Social Secrecy x Ideology (-2=very cons.; 0=moderate/not sure; +2=very lib.)		-0.007
+		[0.026]
+Psychological Secrecy x Race: Black (1=yes)		-0.025
+		[0.074]
+Psychological Secrecy x Race: Hispanic (1=yes)		0.001
+		[0.066]
+Psychological Secrecy x Race: Other Race (1=yes)		-0.228
+		[0.093]**
+Psychological Secrecy x Female (1=yes)		-0.020
+		[0.045]
+Psychological Secrecy x Age (Years)		0.019
+		[0.007]***
+Psychological Secrecy x Age-squared/100		-0.018
+		[0.007]***
+Psychological Secrecy x Married/Domestic Partnership (1=yes)		-0.066
+		[0.056]
+Psychological Secrecy x Religious Attendance (1-6)		-0.015
+		[0.016]
+Psychological Secrecy x Education (1=No HS; 6=Post-grad)		-0.005
+		[0.017]
+Psychological Secrecy x Interest in Politics (standardized)		0.000
+		[0.032]
+Psychological Secrecy x Income (1=<10k; 14=>150k; 15=RF/Missing)		-0.010
+		[0.008]
+Psychological Secrecy x Income Missing		0.038
+		[0.102]
+Psychological Secrecy x Index of issue attitudes (conservative-liberal)		0.015
+		[0.045]
+Psychological Secrecy x Ideology (-2=very cons.; 0=moderate/not sure; +2=very li		-0.041
+		[0.030]
+Constant	-0.084	-0.473
+	[0.283]	[0.318]
+Observations	804	804
+R-squared	0.751	0.777
+Robust standard errors in brackets		
+* significant at 10%; ** significant at 5%; *** significant at 1%		

@@ -1,0 +1,71 @@
+	Presidential Vote Choice (-1=McCain; 0=Other/Didn't Vote; +1=Obama)
+Trust in Government (Standardized, Mean=0, SD=1)	-0.021
+	[0.114]
+Trust in Government x Party: Strong Republican	0.010
+	[0.115]
+Trust in Government x Party: Weak Republican	0.246
+	[0.163]
+Trust in Government x Party: Lean Republican	-0.067
+	[0.134]
+Trust in Government x Party: Lean Democrat	0.044
+	[0.134]
+Trust in Government x Party: Weak Democrat	-0.027
+	[0.142]
+Trust in Government x Party: Strong Democrat	0.082
+	[0.122]
+Trust in Government x Union HH (1=yes)	0.062
+	[0.061]
+Party: Strong Republican	-0.771
+	[0.139]***
+Party: Weak Republican	-0.450
+	[0.166]***
+Party: Lean Republican	-0.699
+	[0.132]***
+Party: Lean Democrat	0.666
+	[0.133]***
+Party: Weak Democrat	0.822
+	[0.125]***
+Party: Strong Democrat	0.596
+	[0.130]***
+Union HH (1=yes)	-0.042
+	[0.058]
+Race: Black (1=yes)	0.391
+	[0.087]***
+Race: Hispanic (1=yes)	-0.019
+	[0.148]
+Race: Other Race (1=yes)	-0.110
+	[0.137]
+Female (1=yes)	-0.060
+	[0.053]
+Age (Years)	0.010
+	[0.013]
+Age-squared/100	-0.015
+	[0.013]
+Married/Domestic Partnership (1=yes)	-0.121
+	[0.066]*
+Religious Attendance (1-6)	0.016
+	[0.018]
+Education: No HS	0.240
+	[0.210]
+Education: Some college	-0.040
+	[0.075]
+Education: 2-year college	0.196
+	[0.142]
+Education: 4-year college	0.080
+	[0.077]
+Education: Post-graduate	-0.058
+	[0.086]
+Income (1=<10k; 14=>150k; 15=RF/Missing)	-0.011
+	[0.010]
+Interest in Politics (standardized)	0.066
+	[0.035]*
+Ideology (-2=very cons.; 0=moderate/not sure; +2=very lib.)	0.101
+	[0.037]***
+Income Missing	-0.121
+	[0.113]
+Constant	-0.591
+	[0.338]*
+Observations	626
+R-squared	0.715
+Robust standard errors in brackets	
+* significant at 10%; ** significant at 5%; *** significant at 1%	

@@ -1,0 +1,169 @@
+---
+title: "regressions7"
+author: "lkoster"
+date: "March 17, 2016"
+output: html_document
+---
+
+<table style="text-align:center"><caption><strong>Regression models</strong></caption>
+<tr><td colspan="5" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="4"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="4" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="4">Predicted Effect on Voting Strategically</td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td><td>(3)</td><td>(4)</td></tr>
+<tr><td colspan="5" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">ballot_secrecy_binary</td><td>0.018</td><td>-0.013</td><td>0.185</td><td>-0.028</td></tr>
+<tr><td style="text-align:left"></td><td>(0.018)</td><td>(0.072)</td><td>(0.139)</td><td>(0.071)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">ideology</td><td></td><td></td><td>-0.079<sup>&#9786;&#9786;</sup></td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.037)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">ideology_strength</td><td>0.070<sup>&#9786;</td><td>#9786;</td><td>#9786;</sup></td><td>0.112<sup>&#9786;</td></tr>
+<tr><td style="text-align:left"></td><td>(0.013)</td><td>(0.036)</td><td>(0.065)</td><td>(0.035)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">raceblack</td><td>0.103<sup>&#9786;</td><td>#9786;</td><td>#9786;</sup></td><td>0.094<sup>&#9786;</td></tr>
+<tr><td style="text-align:left"></td><td>(0.036)</td><td>(0.035)</td><td>(0.034)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">racehispanic</td><td>0.067</td><td>0.070<sup>&#9786;</sup></td><td>0.061</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.042)</td><td>(0.042)</td><td>(0.041)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">raceasian</td><td>-0.093</td><td>-0.077</td><td>-0.052</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.120)</td><td>(0.120)</td><td>(0.116)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">racenative american</td><td>0.024</td><td>0.033</td><td>0.046</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.067)</td><td>(0.066)</td><td>(0.064)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">racemixed</td><td>0.020</td><td>0.004</td><td>0.002</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.114)</td><td>(0.113)</td><td>(0.110)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">raceother</td><td>0.091</td><td>0.084</td><td>0.090</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.062)</td><td>(0.062)</td><td>(0.060)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">educationhigh school graduate</td><td>-0.005</td><td>-0.001</td><td>0.008</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.053)</td><td>(0.053)</td><td>(0.052)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">educationsome college</td><td>-0.028</td><td>-0.020</td><td>-0.017</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.054)</td><td>(0.053)</td><td>(0.052)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">education2-year</td><td>-0.064</td><td>-0.059</td><td>-0.056</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.061)</td><td>(0.061)</td><td>(0.059)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">education4-year</td><td>-0.026</td><td>-0.010</td><td>-0.001</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.054)</td><td>(0.054)</td><td>(0.053)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">educationpost-grad</td><td>-0.043</td><td>-0.032</td><td>-0.029</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.058)</td><td>(0.057)</td><td>(0.056)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">14,999</td><td>-0.002</td><td>-0.022</td><td>-0.042</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.089)</td><td>(0.089)</td><td>(0.087)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">19,999</td><td>-0.056</td><td>-0.051</td><td>-0.043</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.090)</td><td>(0.089)</td><td>(0.086)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">24,999</td><td>-0.029</td><td>-0.038</td><td>-0.063</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.080)</td><td>(0.079)</td><td>(0.077)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">29,999</td><td>0.047</td><td>0.020</td><td>-0.017</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.073)</td><td>(0.073)</td><td>(0.071)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">39,999</td><td>-0.105</td><td>-0.114<sup>&#9786;</sup></td><td>-0.130<sup>&#9786;&#9786;</sup></td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.068)</td><td>(0.068)</td><td>(0.066)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">49,999</td><td>-0.114<sup>&#9786;</sup></td><td>-0.126<sup>&#9786;</sup></td><td>-0.143<sup>&#9786;&#9786;</sup></td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.069)</td><td>(0.069)</td><td>(0.067)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">59,999</td><td>-0.087</td><td>-0.104</td><td>-0.112<sup>&#9786;</sup></td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.068)</td><td>(0.068)</td><td>(0.066)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">69,999</td><td>-0.062</td><td>-0.071</td><td>-0.086</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.070)</td><td>(0.070)</td><td>(0.068)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">79,999</td><td>-0.095</td><td>-0.103</td><td>-0.115<sup>&#9786;</sup></td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.069)</td><td>(0.068)</td><td>(0.066)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">99,999</td><td>-0.101</td><td>-0.114<sup>&#9786;</sup></td><td>-0.131<sup>&#9786;</sup></td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.069)</td><td>(0.069)</td><td>(0.067)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">119,999</td><td>-0.056</td><td>-0.066</td><td>-0.083</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.070)</td><td>(0.070)</td><td>(0.068)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">149,999</td><td>-0.124<sup>&#9786;</sup></td><td>-0.137<sup>&#9786;</sup></td><td>-0.152<sup>&#9786;&#9786;</sup></td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.073)</td><td>(0.073)</td><td>(0.071)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">150,000 or more</td><td>-0.095</td><td>-0.113</td><td>-0.126<sup>&#9786;</sup></td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.072)</td><td>(0.071)</td><td>(0.069)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">family_incomeprefer not to say</td><td>-0.044</td><td>-0.043</td><td>-0.050</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.070)</td><td>(0.070)</td><td>(0.068)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">family_incomeskipped</td><td>-0.024</td><td>-0.050</td><td>-0.064</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.235)</td><td>(0.233)</td><td>(0.227)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">unionHHi am a union member, no one in house in union</td><td>-0.021</td><td>-0.019</td><td>-0.015</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.028)</td><td>(0.028)</td><td>(0.027)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">unionHHi'm not in union, house member in union</td><td>-0.001</td><td>0.0002</td><td>-0.003</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.029)</td><td>(0.029)</td><td>(0.028)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">unionHHi and house member in union</td><td>-0.002</td><td>-0.003</td><td>-0.017</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.048)</td><td>(0.048)</td><td>(0.046)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">unionHHskipped</td><td>-0.024</td><td>-0.033</td><td>-0.048</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.103)</td><td>(0.103)</td><td>(0.100)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">genderfemale</td><td>-0.005</td><td>-0.010</td><td>-0.024</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.018)</td><td>(0.018)</td><td>(0.017)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">registration_statusno</td><td>-0.035</td><td>-0.046</td><td>-0.028</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.104)</td><td>(0.103)</td><td>(0.100)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">registration_statusdon't know</td><td>0.144</td><td>0.098</td><td>0.059</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.106)</td><td>(0.106)</td><td>(0.103)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">liberal</td><td>-0.015</td><td>0.082</td><td></td><td>0.096</td></tr>
+<tr><td style="text-align:left"></td><td>(0.022)</td><td>(0.064)</td><td></td><td>(0.062)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">age</td><td>0.003</td><td>0.002</td><td>0.003</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.003)</td><td>(0.003)</td><td>(0.003)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">age_squared</td><td>-0.004</td><td>-0.003</td><td>-0.004</td><td></td></tr>
+<tr><td style="text-align:left"></td><td>(0.003)</td><td>(0.003)</td><td>(0.003)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">ballot_secrecy_binaryTRUE:liberal</td><td></td><td>0.035</td><td></td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td>(0.078)</td><td></td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">ballot_secrecy_binaryTRUE:ideology</td><td></td><td></td><td>-0.053</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.044)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">ballot_secrecy_binaryTRUE:ideology_strength</td><td></td><td>0.032</td><td>-0.138<sup>&#9786;</sup></td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td>(0.043)</td><td>(0.079)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">liberal:ideology_strength</td><td></td><td>-0.061</td><td></td><td>-0.062</td></tr>
+<tr><td style="text-align:left"></td><td></td><td>(0.044)</td><td></td><td>(0.043)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">ballot_secrecy_binaryTRUE:liberal:ideology_strength</td><td></td><td>-0.058</td><td></td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td>(0.054)</td><td></td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">ideology:ideology_strength</td><td></td><td></td><td>0.046<sup>&#9786;&#9786;</sup></td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.019)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">ballot_secrecy_binaryTRUE:ideology:ideology_strength</td><td></td><td></td><td>0.040<sup>&#9786;</sup></td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.023)</td><td></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">liberal:ballot_secrecy_binary</td><td></td><td></td><td></td><td>0.032</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td>(0.076)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">ideology_strength:ballot_secrecy_binary</td><td></td><td></td><td></td><td>0.044</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td>(0.042)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">liberal:ideology_strength:ballot_secrecy_binary</td><td></td><td></td><td></td><td>-0.066</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td>(0.053)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Constant</td><td>0.035</td><td>-0.014</td><td>0.297<sup>&#9786;</sup></td><td>-0.097<sup>&#9786;</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.117)</td><td>(0.127)</td><td>(0.154)</td><td>(0.057)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td><td></td></tr>
+<tr><td colspan="5" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>729</td><td>729</td><td>729</td><td>729</td></tr>
+<tr><td style="text-align:left">R<sup>2</sup></td><td>0.143</td><td>0.164</td><td>0.208</td><td>0.106</td></tr>
+<tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.096</td><td>0.112</td><td>0.160</td><td>0.097</td></tr>
+<tr><td style="text-align:left">Residual Std. Error</td><td>0.224 (df = 690)</td><td>0.222 (df = 686)</td><td>0.216 (df = 686)</td><td>0.224 (df = 721)</td></tr>
+<tr><td style="text-align:left">F Statistic</td><td>3.035<sup>&#9786;</td><td>#9786;</td><td>#9786;</sup> (df = 38; 690)</td><td>3.194<sup>&#9786;</td></tr>
+<tr><td colspan="5" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="4" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
